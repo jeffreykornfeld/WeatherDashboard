@@ -17,11 +17,12 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName 
     ;    
 
     //Today's forecast
-    var todayWeather = $("<div class='col'>");
+    var todayWeather = $("<div class = 'col'>");
     var dateToday = moment().format("MMM Do YY")
     var city = response.city.name;
     var firstText = $("<h3>").text(city + "  " + dateToday);
     todayWeather.append(firstText);
+    console.log(firstText);
     var kelvin = response.list[0].main.temp;
     var farenheit = ((kelvin-273.15)*1.8) + 32
     var temp = Math.round(farenheit);
