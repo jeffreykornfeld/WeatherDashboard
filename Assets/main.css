@@ -1,0 +1,11 @@
+.jumbotron {
+    text-align: center;
+    background-color: blue;
+    color: black;
+    border-radius: 0;
+    border-bottom: 10px solid black;
+  }
+#weather-section{
+  background-color: lightblue;
+  border: 15px black;
+ }
