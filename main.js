@@ -21,18 +21,35 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName 
     //Today's forecast
     var todayWeather = $("#today-weather");
     console.log(todayWeather)
-    var dateToday = moment().format("MMM Do YY")
+    var dateToday = moment().format("l")
     var city = response.city.name;
-    var firstText = $("<h3>").text(dateToday);
+    var firstText = $("<h2>").text(city);
     todayWeather.append(firstText);
     console.log(firstText);
-    var secondText = $("<h4>").text(city);
+    var secondText = $("<h4>").text(dateToday);
     todayWeather.append(secondText); 
     var kelvin = response.list[0].main.temp;
     var farenheit = ((kelvin-273.15)*1.8) + 32
     var temp = Math.round(farenheit);
-    var thirdText = $("<p>").text("Temperature: " + temp);  
+    var thirdText = $("<p>").text("Temperature: " + temp + "°F");  
     todayWeather.append(thirdText);
+    var humidity = response.list[0].main.humidity;
+    var fourthText = $("<p>").text("Humidity: " + humidity);
+    todayWeather.append(fourthText);
+    var wind = response.list[0].wind.speed;
+    var fifthText = $("<p>").text("Wind speed: " + wind);
+    todayWeather.append(fifthText);
+
+
+
+
+    let a = $("<button>");
+    a.addClass("city-btn");
+    a.addClass("row");
+    a.text(city)
+    $("#searched").append(a);
+
+
     
     //5-day forecast
     var i
