@@ -2,15 +2,18 @@
 
 
 //api key a18d2d1ffc26c24224b5b0379045dfc9
-$("#submitBtn").click(function(event){
-    event.preventDefault()
-    console.log(event)
 
+
+ 
+
+
+
+function getWeather(){
     $("#today-weather").empty();
     $("#weather-section").empty();
-var cityName = $("#city-input").val().trim();
-var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=a18d2d1ffc26c24224b5b0379045dfc9"
 
+    var cityName = $("#city-input").val().trim();
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=a18d2d1ffc26c24224b5b0379045dfc9"
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -39,18 +42,20 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName 
     var wind = response.list[0].wind.speed;
     var fifthText = $("<p>").text("Wind speed: " + wind);
     todayWeather.append(fifthText);
-
-
-
-
-    let a = $("<button>");
-    a.addClass("city-btn");
-    a.addClass("row");
-    a.text(city)
-    $("#searched").append(a);
-
-
+        
+        function createButtons(){
+        let a = $("<button>");
+        a.addClass("cityBtn");
+        a.addClass("row");
+        a.attr("id", city);
+        a.text(city);
+        $("#searched").append(a);
+        }
+        createButtons();
     
+
+
+ 
     //5-day forecast
     var i
     for (i = 5 ; i > 0 ; i--)    {
@@ -77,6 +82,23 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName 
         // skies
         var skies = response.list[i].weather[0].main;
         $("#weather-section").prepend(weatherSection);
+        
+
     }
     })
+}
+
+
+
+
+$("#submitBtn").click(function(event){
+    event.preventDefault()
+    console.log(event)
+    getWeather();
+    
+})
+
+$(document).on("click", ".cityBtn", function(event){
+event.preventDefault()
+getWeather();
 })
