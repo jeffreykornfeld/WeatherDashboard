@@ -17,25 +17,36 @@
 </head>
 <body>
 
-    <header class="jumbotron">
+    <header class="page-header">
         <h2 class="display-1">Weather Dashboard</h1>
       </header>
       <div class="container">
         <div class = "row">
+          <div class="col">
             <form id="citySearch">
-                <label for="city-input">Search a city</label>
-                <input type="text" id="city-input">
-                
+              <label for="city-input">Search a city</label>
+              <input type="text" id="city-input">
+              <button id="submitBtn"><i class="fa fa-search"></i></button>
             </form>
-            <button><i class="fa fa-search"></i></button>
+            
           </div>
-          <div class = "row" id="today-weather"></div> 
+            
+          
+          <div class = "row" >
+            <div class="col" id="today-weather" >
+              
+            </div>
+          </div> 
         </div>
       </div>
       <div class = "container">
           <div class="row col-lg" id="weather-section">
         </div>
-     </div>
+      </div>
+
+      <div id="searched">
+
+      </div>
 
 
 <script src="https://code.jquery.com/jquery.js"></script>

@@ -2,7 +2,10 @@
 
 
 //api key a18d2d1ffc26c24224b5b0379045dfc9
-$("button").click(function(){
+$("#submitBtn").click(function(event){
+    event.preventDefault()
+    console.log(event)
+
     $("#today-weather").empty();
     $("#weather-section").empty();
 var cityName = $("#city-input").val().trim();
@@ -14,20 +17,23 @@ var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName 
     }).then(function(response) {
     console.log(response);
     //Display date
-    ;    
 
     //Today's forecast
-    var todayWeather = $("<div class = 'col'>");
+    var todayWeather = $("#today-weather");
+    console.log(todayWeather)
     var dateToday = moment().format("MMM Do YY")
     var city = response.city.name;
-    var firstText = $("<h3>").text(city + "  " + dateToday);
+    var firstText = $("<h3>").text(dateToday);
     todayWeather.append(firstText);
     console.log(firstText);
+    var secondText = $("<h4>").text(city);
+    todayWeather.append(secondText); 
     var kelvin = response.list[0].main.temp;
     var farenheit = ((kelvin-273.15)*1.8) + 32
     var temp = Math.round(farenheit);
-    var secondText = $("<p>").text("Temperature: " + temp);  
-    todayWeather.append(secondText);  
+    var thirdText = $("<p>").text("Temperature: " + temp);  
+    todayWeather.append(thirdText);
+    
     //5-day forecast
     var i
     for (i = 5 ; i > 0 ; i--)    {
