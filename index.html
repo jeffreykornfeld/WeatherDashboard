@@ -1,57 +1,101 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Weather Dashboard</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
-    <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-    crossorigin="anonymous"
-  />
-    
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Weather Dashboard</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+    integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+
 </head>
+
 <body>
 
-    <header class="page-header">
-        <h2 class="display-1">Weather Dashboard</h1>
-      </header>
-      <div class="container">
-        <div class = "row">
-          <div class="col">
-            <form id="citySearch">
-              <label for="city-input">Search a city</label>
-              <input type="text" id="city-input">
-              <button id="submitBtn"><i class="fa fa-search"></i></button>
-            </form>
-            
+  <!--Jumbotron-->
+  <div class="jumbotron container-fluid mt-2 text-center p-2" style="background-color:#404040 ;color: white;">
+    <h1> Weather Dashboard</h1>
+  </div>
+  <div class="container">
+    <!--City Search-->
+    <div class="row">
+      <div class="col-sm-4">
+        <h4 class="pt-1">Search for a City:</h4>
+        <!--City Name Search-->
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id="search-city">
+          <div class="input-group-append">
+            <button class=" btn bg-primary text-light" id="search-button"><i class="fa fa-search"></i></button>
           </div>
-            
-          
-          <div class = "row" >
-            <div class="col" id="today-weather" >
-              
+        </div>
+
+        <!--Previous City Searches-->
+        <button class=" btn btn-primary" type="button" id="clear-history">Clear history</button>
+        <ul class="list-group">
+
+        </ul>
+      </div>
+      <div class="col-sm-8">
+        <div class="row ml-2 border border-dark">
+          <div class="col-sm-12" id="current-weather">
+            <h3 class="city-name mb-1 mt-2 bolder" id="current-city"></h3>
+            <p>Temperature:<span class="current" id="current-temperature"></span></p>
+            <p>Humidity:<span class="current" id="current-humidity"></span></p>
+            <p>Wind Speed:<span class="current" id="current-wind-speed"></span></p>
+            </p>
+          </div>
+        </div>
+
+        <!--5 Day Forecast-->
+        <div class="col-sm-12" id="future-weather">
+          <h3>5-Day Forecast:</h3>
+          <div class="row text-light">
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 ">
+              <p id="date0"></p>
+              <p id="img0"></p>
+              <p>Temp:<span id="temp0"></span></p>
+              <p>Humidity:<span id="humidity0"></span></p>
             </div>
-          </div> 
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 ">
+              <p id="date1"></p>
+              <p id="img1"></p>
+              <p>Temp:<span id="temp1"></span></p>
+              <p>Humidity:<span id="humidity1"></span></p>
+            </div>
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 ">
+              <p id="date2"></p>
+              <p id="img2"></p>
+              <p>Temp:<span id="temp2"></span></p>
+              <p>Humidity:<span id="humidity2"></span></p>
+            </div>
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 ">
+              <p id="date3"></p>
+              <p id="img3"></p>
+              <p>Temp:<span id="temp3"></span></p>
+              <p>Humidity:<span id="humidity3"></span></p>
+            </div>
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 ">
+              <p id="date4"></p>
+              <p id="img4"></p>
+              <p>Temp:<span id="temp4"></span></p>
+              <p>Humidity:<span id="humidity4"></span></p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class = "container">
-          <div class="row col-lg" id="weather-section">
-        </div>
-      </div>
-
-      <div id="searched" class = col-lg>
 
       </div>
+    </div>
+  </div>
 
 
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-<script src='main.js'></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <script src='main.js'></script>
 </body>
+
 </html>
