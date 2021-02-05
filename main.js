@@ -1,6 +1,9 @@
 var city = "";
 var searchCity = $("#search-city");
 var currentCity = $("#current-city");
+var currentTemp = $("#current-temperature")
+var currentHumidity = $("#current-humidity")
+var currentWindSpeed = $("#current-wind-speed")
 
 //Displays the Weather
 function displayWeather(event) {
@@ -13,10 +16,20 @@ function displayWeather(event) {
         method: "GET"
     }).then(function (response) {
         console.log(response);
-        
+
         //Displays City Name
-        var dateToday = moment().format("l") 
-        $(currentCity).html(response.city.name +" ("+dateToday+")");
+        var dateToday = moment().format("l")
+        $(currentCity).html(response.city.name + " (" + dateToday + ")");
+
+        //Converts Temp to Farenheit and displays 
+        var tempF = (response.list[0].main.temp - 273.15) * 1.80 + 32;
+        $(currentTemp).html(" " + (tempF).toFixed(2) + "&#8457");
+
+        //Displays Humidity
+        $(currentHumidity).html(" " + response.list[0].main.humidity + "%");
+
+        //Displays Wind Speed
+        $(currentWindSpeed).html(" " + response.list[0].wind.speed + "mph");
     })
 }
 
